@@ -1,4 +1,4 @@
-import { miniCreateClass } from "react-core/util";
+import { miniCreateClass, shallowEqual } from "react-core/util";
 import { Component } from "react-core/Component";
 import { createElement } from "react-core/createElement";
 var MemoComponent = miniCreateClass(
@@ -10,7 +10,7 @@ var MemoComponent = miniCreateClass(
     {}
 );
 
-export function memo(render, shouldComponentUpdate) {
+export function memo(render, shouldComponentUpdate = shallowEqual) {
     return function(props) {
         return createElement(MemoComponent, Object.assign(props,{
             render: render.bind(this, props),
