@@ -1,5 +1,5 @@
 /**
- * 运行于webview的React by 司徒正美 Copyright 2020-07-15T08
+ * 运行于webview的React by 司徒正美 Copyright 2020-07-15T09
  * IE9+
  */
 
@@ -1229,6 +1229,7 @@
     }
     function onCompositionEnd(e) {
         e.target.__onComposition = false;
+        dispatchEvent(e, "change");
     }
     var input2change = /text|password|search|url|email/i;
     if (!document$1['__input']) {
@@ -1236,6 +1237,9 @@
         addEvent(document$1, 'compositionstart', onCompositionStart);
         addEvent(document$1, 'compositionend', onCompositionEnd);
         addEvent(document$1, 'input', function (e) {
+            if (e.target.__onComposition) {
+                return;
+            }
             var dom = getTarget(e);
             if (input2change.test(dom.type)) {
                 if (!dom.__onComposition) {

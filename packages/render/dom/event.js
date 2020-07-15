@@ -198,7 +198,7 @@ function onCompositionStart(e) {
 
 function onCompositionEnd(e) {
     e.target.__onComposition = false;
-    //dispatchEvent(e, "change");
+    dispatchEvent(e, "change");
 }
 const input2change = /text|password|search|url|email/i;
 //react中，text,textarea,password元素的change事件实质上是input事件
@@ -208,12 +208,10 @@ if (!document['__input']) {
     addEvent(document, 'compositionstart', onCompositionStart);
     addEvent(document, 'compositionend', onCompositionEnd);
     addEvent(document, 'input', function(e) {
-        var dom = getTarget(e);
-        if (input2change.test(dom.type)) {
-            if (!dom.__onComposition) {
-                dispatchEvent(e, 'change');
-            }
+        if (e.target.__onComposition) {
+          return;
         }
+        dispatchEvent(e, 'change');
         dispatchEvent(e);
     });
 }

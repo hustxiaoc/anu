@@ -60,7 +60,32 @@ class App extends React.Component {
     }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+
+
+class App1 extends React.Component{
+
+  state = {
+    value: ""
+  }
+
+  onChange = (evt) => {
+    const value = evt.target.value;
+    console.log('onchange', value);
+    this.setState({value})
+  }
+
+  render(){
+      return (
+          <div>
+            <p>{this.state.value}</p>
+            <input value={this.state.value.toUpperCase()} onChange={this.onChange} />
+          </div>
+      )
+  }
+}
+
+
+ReactDOM.render(<App1 />, document.getElementById("root"));
 
 
  </script>

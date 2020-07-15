@@ -1246,19 +1246,17 @@
     }
     function onCompositionEnd(e) {
         e.target.__onComposition = false;
+        dispatchEvent(e, "change");
     }
-    var input2change = /text|password|search|url|email/i;
     if (!document['__input']) {
         globalEvents.input = document['__input'] = true;
         addEvent(document, 'compositionstart', onCompositionStart);
         addEvent(document, 'compositionend', onCompositionEnd);
         addEvent(document, 'input', function (e) {
-            var dom = getTarget(e);
-            if (input2change.test(dom.type)) {
-                if (!dom.__onComposition) {
-                    dispatchEvent(e, 'change');
-                }
+            if (e.target.__onComposition) {
+                return;
             }
+            dispatchEvent(e, 'change');
             dispatchEvent(e);
         });
     }
