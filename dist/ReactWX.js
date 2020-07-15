@@ -1,5 +1,5 @@
 /**
- * 运行于微信小程序的React by 司徒正美 Copyright 2019-10-11T06
+ * 运行于微信小程序的React by 司徒正美 Copyright 2020-07-15T08
  * IE9+
  */
 
@@ -2727,7 +2727,8 @@ var MemoComponent = miniCreateClass(function MemoComponent(obj) {
     this.render = obj.render;
     this.shouldComponentUpdate = obj.shouldComponentUpdate;
 }, Component, {});
-function memo(render, shouldComponentUpdate) {
+function memo(render) {
+    var shouldComponentUpdate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : shallowEqual;
     return function (props) {
         return createElement(MemoComponent, Object.assign(props, {
             render: render.bind(this, props),

@@ -1,5 +1,5 @@
 /**
- * 运行于支付宝小程序的React by 司徒正美 Copyright 2019-10-11
+ * 运行于支付宝小程序的React by 司徒正美 Copyright 2020-07-15
  */
 
 var arrayPush = Array.prototype.push;
@@ -2850,7 +2850,8 @@ var MemoComponent = miniCreateClass(function MemoComponent(obj) {
     this.render = obj.render;
     this.shouldComponentUpdate = obj.shouldComponentUpdate;
 }, Component, {});
-function memo(render, shouldComponentUpdate) {
+function memo(render) {
+    var shouldComponentUpdate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : shallowEqual;
     return function (props) {
         return createElement(MemoComponent, Object.assign(props, {
             render: render.bind(this, props),
@@ -2867,7 +2868,7 @@ var React = getWindow().React = {
     findDOMNode: function findDOMNode() {
         console.log("小程序不支持findDOMNode");
     },
-    version: "1.6.0",
+    version: "1.6.1",
     render: render$1,
     hydrate: render$1,
     webview: webview,

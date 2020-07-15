@@ -1,6 +1,8 @@
-import { miniCreateClass, shallowEqual } from "react-core/util";
+import { miniCreateClass } from "react-core/util";
 import { Component } from "react-core/Component";
 import { createElement } from "react-core/createElement";
+import { shallowEqual } from "react-core/shallowEqual";
+
 var MemoComponent = miniCreateClass(
     function MemoComponent(obj) {
         this.render = obj.render;

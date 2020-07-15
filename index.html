@@ -8,7 +8,7 @@
   <script src="https://cdn.bootcss.com/react/16.9.0/umd/react.development.js"></script>
   <script src="https://cdn.bootcss.com/react-dom/16.9.0/umd/react-dom.development.js"  ></script>
 -->
-<script src="./dist/React.js"></script> 
+<script src="./dist/React.js"></script>
 
  <script type='text/javascript' src="./lib/babel.js"></script>
 
@@ -51,7 +51,7 @@ class App extends React.Component {
         return (
             <div>
                 <p><input ref={valueRef} onChange={this.updateName.bind(this)}  value={this.state.name} />{new Date-0}</p>
-             
+
                 <Suspense  fallback={<div>loading...</div>}>
                     <OtherComponent name={this.state.name} />
                 </Suspense>
@@ -62,7 +62,7 @@ class App extends React.Component {
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
- 
+
  </script>
 
 

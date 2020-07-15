@@ -1,5 +1,5 @@
 /**
- * by 司徒正美 Copyright 2019-10-11
+ * by 司徒正美 Copyright 2020-07-15
  * IE9+
  */
 
@@ -866,7 +866,8 @@
         this.render = obj.render;
         this.shouldComponentUpdate = obj.shouldComponentUpdate;
     }, Component, {});
-    function memo(render, shouldComponentUpdate) {
+    function memo(render) {
+        var shouldComponentUpdate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : shallowEqual;
         return function (props) {
             return createElement(MemoComponent, Object.assign(props, {
                 render: render.bind(this, props),
@@ -3230,7 +3231,7 @@
             findDOMNode: findDOMNode,
             unmountComponentAtNode: unmountComponentAtNode,
             unstable_renderSubtreeIntoContainer: unstable_renderSubtreeIntoContainer,
-            version: '1.6.0',
+            version: '1.6.1',
             render: render$1,
             hydrate: render$1,
             unstable_batchedUpdates: DOMRenderer.batchedUpdates,

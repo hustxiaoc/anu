@@ -1,5 +1,5 @@
 /**
- * 运行于webview的React by 司徒正美 Copyright 2019-10-11T06
+ * 运行于webview的React by 司徒正美 Copyright 2020-07-15T08
  * IE9+
  */
 
@@ -677,7 +677,8 @@
         this.render = obj.render;
         this.shouldComponentUpdate = obj.shouldComponentUpdate;
     }, Component, {});
-    function memo(render, shouldComponentUpdate) {
+    function memo(render) {
+        var shouldComponentUpdate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : shallowEqual;
         return function (props) {
             return createElement(MemoComponent, Object.assign(props, {
                 render: render.bind(this, props),
@@ -5549,7 +5550,7 @@
     var MAX_PAGE_STACK_NUM = 10;
     var React$2 = getWindow().React = {
         findDOMNode: findDOMNode,
-        version: '1.6.0',
+        version: '1.6.1',
         render: render$2,
         hydrate: render$2,
         Fragment: Fragment,
